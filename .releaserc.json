@@ -66,30 +66,6 @@
         }
       }
     ],
-    "@semantic-release/github",
-    [
-      "semantic-release-replace-plugin",
-      {
-        "replacements": [
-          {
-            "files": ["README.md"],
-            "from": "ghcr.io/miracum/ohdsi-cohort-sync:v.*",
-            "to": "ghcr.io/miracum/ohdsi-cohort-sync:v${nextRelease.version}",
-            "results": [
-              {
-                "file": "README.md",
-                "hasChanged": true
-              }
-            ]
-          }
-        ]
-      }
-    ],
-    [
-      "@semantic-release/git",
-      {
-        "assets": ["README.md"]
-      }
-    ]
+    "@semantic-release/github"
   ]
 }
