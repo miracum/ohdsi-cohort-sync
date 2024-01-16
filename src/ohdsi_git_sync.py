@@ -5,11 +5,10 @@ from os import environ
 from pathlib import Path
 
 import configargparse
+import git
 import requests
 import simplejson
 from slugify import slugify
-
-import git
 
 
 def clone_repo(repo_url, branch, destination):
