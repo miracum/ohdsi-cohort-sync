@@ -1,0 +1,82 @@
+name: ci
+
+on:
+  push:
+    branches: [master]
+  release:
+    types: [created]
+  pull_request:
+    branches: [master]
+
+permissions: read-all
+
+jobs:
+  build:
+    uses: miracum/.github/.github/workflows/standard-build.yaml@99ea726a6aea9d5e055cadc81cd46527ea6c8d83 # v1.5.4
+    permissions:
+      contents: read
+      id-token: write
+      packages: write
+      pull-requests: write
+      actions: read
+      security-events: write
+    with:
+      enable-build-test-layer: false
+      enable-upload-test-image: false
+    secrets:
+      github-token: ${{ secrets.GITHUB_TOKEN }}
+
+  test:
+    runs-on: ubuntu-22.04
+    needs:
+      - build
+    steps:
+      - name: "Checkout code"
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+        with:
+          persist-credentials: false
+
+      - name: Download image
+        uses: actions/download-artifact@6b208ae046db98c579e8a3aa621ab581ff575935 # v4.1.1
+        if: ${{ github.event_name == 'pull_request' }}
+        with:
+          name: ${{ needs.build.outputs.image-slug }}
+          path: /tmp
+
+      - name: Load image
+        if: ${{ github.event_name == 'pull_request' }}
+        run: |
+          ls -lsa /tmp
+          docker load --input /tmp/image.tar
+          docker image ls
+
+      - name: test run
+        run: |
+          docker run --rm ${{ fromJson(needs.build.outputs.image-meta-json).tags[0] }} --help
+
+  lint:
+    uses: miracum/.github/.github/workflows/standard-lint.yaml@99ea726a6aea9d5e055cadc81cd46527ea6c8d83 # v1.5.4
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
+      security-events: write
+      actions: read
+    with:
+      enable-validate-gradle-wrapper: false
+      codeql-languages: '["python"]'
+      enable-codeql: true
+      enable-verify-base-image-signature: false
+    secrets:
+      github-token: ${{ secrets.GITHUB_TOKEN }}
+
+  release:
+    uses: miracum/.github/.github/workflows/standard-release.yaml@99ea726a6aea9d5e055cadc81cd46527ea6c8d83 # v1.5.4
+    needs:
+      - test
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+    secrets:
+      semantic-release-token: ${{ secrets.MIRACUM_BOT_SEMANTIC_RELEASE_TOKEN }}
