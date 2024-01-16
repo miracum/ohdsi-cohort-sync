@@ -65,7 +65,7 @@ docker run --rm \
     -e WEBAPI_URL="http://host.docker.internal:8083/WebAPI" \
     -e GIT_SUB_PATH="test" \
     -e GIT_COMMIT_USER_NAME="OHDSI Cohort Sync Bot" \
-    -e GIT_COMMIT_EMAIL="ohdsi-git-sync@bots.gitlab.miracum.org" \
+    -e GIT_COMMIT_EMAIL="ohdsi-git-sync@example.com" \
     ghcr.io/miracum/ohdsi-cohort-sync:v1.0.0
 ```
 

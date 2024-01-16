@@ -3,6 +3,7 @@
 APPLY_FIXES: none # all, none, or list of linter keys
 DISABLE:
   - SPELL
+  - COPYPASTE
 SHOW_ELAPSED_TIME: true
 FILEIO_REPORTER: false
 
