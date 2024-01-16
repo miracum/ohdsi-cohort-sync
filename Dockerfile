@@ -2,6 +2,7 @@ FROM docker.io/library/python:3.11.7-slim@sha256:637774748f62b832dc11e7b286e48cd
 WORKDIR /opt/app
 ENV GIT_ASKPASS=/opt/app/askpass.py
 
+# hadolint ignore=DL3008
 RUN <<EOF
 adduser --uid 65532 --no-create-home --disabled-password ohdsi-git-sync
 
@@ -9,7 +10,6 @@ adduser --uid 65532 --no-create-home --disabled-password ohdsi-git-sync
 chown -R ohdsi-git-sync:ohdsi-git-sync /opt/app
 
 apt-get update
-# hadolint ignore=DL3008
 apt-get install -y --no-install-recommends git
 apt-get clean
 rm -rf /var/lib/apt/lists/*
