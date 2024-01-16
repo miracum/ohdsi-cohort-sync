@@ -1,0 +1,7 @@
+-r requirements.txt
+
+black==23.12.1
+flake8==7.0.0
+pycodestyle==2.11.1
+pyflakes==3.2.00
+flake8-bugbear==24.1.15
