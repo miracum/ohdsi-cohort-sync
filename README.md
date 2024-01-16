@@ -1,5 +1,8 @@
 # ohdsi-cohort-sync
 
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/miracum/ohdsi-cohort-sync/badge)](https://api.securityscorecards.dev/projects/github.com/miracum/ohdsi-cohort-sync)
+[![SLSA 3](https://slsa.dev/images/gh-badge-level3.svg)](https://slsa.dev)
+
 A tool for backing up OHDSI WebAPI cohorts in a git repository.
 
 ## Usage
