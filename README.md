@@ -66,7 +66,7 @@ docker run --rm \
     -e GIT_SUB_PATH="test" \
     -e GIT_COMMIT_USER_NAME="OHDSI Cohort Sync Bot" \
     -e GIT_COMMIT_EMAIL="ohdsi-git-sync@example.com" \
-    ghcr.io/miracum/ohdsi-cohort-sync:v1.0.0
+    ghcr.io/miracum/ohdsi-cohort-sync:latest
 ```
 
 When running outside of a container, your local credentials and credential managers are invoked to authenticate.
