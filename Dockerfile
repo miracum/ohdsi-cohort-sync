@@ -1,4 +1,4 @@
-FROM docker.io/library/python:3.11.7-slim@sha256:637774748f62b832dc11e7b286e48cd716727ed04b45a0322776c01bc526afc3 AS build
+FROM docker.io/library/python:3.12.1-slim@sha256:ee9a59cfdad294560241c9a8c8e40034f165feb4af7088c1479c2cdd84aafbed AS build
 WORKDIR /opt/app
 ENV GIT_ASKPASS=/opt/app/askpass.py
 
