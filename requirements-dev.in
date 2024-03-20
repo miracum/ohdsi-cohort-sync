@@ -1,6 +1,6 @@
 -r requirements.txt
 
-black==23.12.1
+black==24.3.0
 flake8==7.0.0
 pycodestyle==2.11.1
 pyflakes==3.2.00
