@@ -12,7 +12,7 @@ permissions: read-all
 
 jobs:
   build:
-    uses: miracum/.github/.github/workflows/standard-build.yaml@7c5194974a95673f832be01920169af6b0db3902 # v1.5.5
+    uses: miracum/.github/.github/workflows/standard-build.yaml@cc6fa0f9913128e1b27770bcd43df2c19e547a25 # v1.6.2
     permissions:
       contents: read
       id-token: write
@@ -37,7 +37,7 @@ jobs:
           persist-credentials: false
 
       - name: Download image
-        uses: actions/download-artifact@6b208ae046db98c579e8a3aa621ab581ff575935 # v4.1.1
+        uses: actions/download-artifact@c850b930e6ba138125429b7e5c93fc707a7f8427 # v4.1.4
         if: ${{ github.event_name == 'pull_request' }}
         with:
           name: ${{ needs.build.outputs.image-slug }}
@@ -55,7 +55,7 @@ jobs:
           docker run --rm ${{ fromJson(needs.build.outputs.image-meta-json).tags[0] }} --help
 
   lint:
-    uses: miracum/.github/.github/workflows/standard-lint.yaml@7c5194974a95673f832be01920169af6b0db3902 # v1.5.5
+    uses: miracum/.github/.github/workflows/standard-lint.yaml@cc6fa0f9913128e1b27770bcd43df2c19e547a25 # v1.6.2
     permissions:
       contents: read
       pull-requests: write
@@ -71,7 +71,7 @@ jobs:
       github-token: ${{ secrets.GITHUB_TOKEN }}
 
   release:
-    uses: miracum/.github/.github/workflows/standard-release.yaml@7c5194974a95673f832be01920169af6b0db3902 # v1.5.5
+    uses: miracum/.github/.github/workflows/standard-release.yaml@cc6fa0f9913128e1b27770bcd43df2c19e547a25 # v1.6.2
     needs:
       - test
     permissions:
