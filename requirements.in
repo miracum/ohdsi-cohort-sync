@@ -1,5 +1,5 @@
 ConfigArgParse==1.7
 requests==2.32.3
 GitPython==3.1.43
-simplejson==3.19.2
+simplejson==3.19.3
 python-slugify==8.0.4
