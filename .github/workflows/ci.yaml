@@ -12,7 +12,7 @@ permissions: read-all
 
 jobs:
   build:
-    uses: miracum/.github/.github/workflows/standard-build.yaml@0c1519ab65e70ab166aa866fd298e92402b48452 # v1.12.4
+    uses: miracum/.github/.github/workflows/standard-build.yaml@abfae5033f23299a721ddda53263e32d18f33d8a # v1.12.12
     permissions:
       contents: read
       id-token: write
@@ -32,7 +32,7 @@ jobs:
       - build
     steps:
       - name: "Checkout code"
-        uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           persist-credentials: false
 
@@ -55,7 +55,7 @@ jobs:
           docker run --rm ${{ fromJson(needs.build.outputs.image-meta-json).tags[0] }} --help
 
   lint:
-    uses: miracum/.github/.github/workflows/standard-lint.yaml@0c1519ab65e70ab166aa866fd298e92402b48452 # v1.12.4
+    uses: miracum/.github/.github/workflows/standard-lint.yaml@abfae5033f23299a721ddda53263e32d18f33d8a # v1.12.12
     permissions:
       contents: read
       pull-requests: write
@@ -71,7 +71,7 @@ jobs:
       github-token: ${{ secrets.GITHUB_TOKEN }}
 
   release:
-    uses: miracum/.github/.github/workflows/standard-release.yaml@0c1519ab65e70ab166aa866fd298e92402b48452 # v1.12.4
+    uses: miracum/.github/.github/workflows/standard-release.yaml@abfae5033f23299a721ddda53263e32d18f33d8a # v1.12.12
     needs:
       - test
     permissions:
